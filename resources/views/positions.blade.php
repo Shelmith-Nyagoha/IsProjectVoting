@@ -65,7 +65,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="results">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
@@ -87,6 +87,7 @@
         <!-- ========================= Main ==================== -->
         <div class="main">
             <div class="topbar">
+              
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
