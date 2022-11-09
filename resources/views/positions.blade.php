@@ -74,7 +74,7 @@
                 </li>
 
                 <li>
-                    <a href="logoutAdmin">
+                    <a href="adminLogin">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>

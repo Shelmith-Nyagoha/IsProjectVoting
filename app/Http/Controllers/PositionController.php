@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Position;
+use App\Models\Candidate;
 
 use DB;
 use Hash;
@@ -100,4 +101,22 @@ class PositionController extends Controller
     {
         return view("manifesto");
     }
+
+    
+    public function vote()
+    {
+        return view("vote");
+    }
+
+    public function viewManifesto()
+    {
+        return view("viewManifesto");
+    }
+
+
+    public function indexFive()
+        {
+            $data=Candidate::all();
+            return view("vote",['data'=>$data]);
+        }
         }

@@ -12,6 +12,11 @@ use Session;
 
 class CandidateController extends Controller
 {
+    public function viewResult()
+    {
+        return view("voteResult");
+    }
+
     public function manageCandidate()
     {
         return view("manageCandidate");
@@ -40,6 +45,8 @@ class CandidateController extends Controller
         $candidates-> studentNumber = $request->studentNumber;
         $candidates-> firstName = $request->firstName;
         $candidates-> positionName = $request->positionName;
+        $candidates-> academicReport = $request-> academicReport;
+        $candidates->manifesto =$request->manifesto;
         $candidates->image =$request->image;
         $candidates-> email = $request->email;
 
@@ -51,6 +58,21 @@ class CandidateController extends Controller
             $filename = time().'.'.$extention;
             $file->move('uploads/candidates/',$filename);
             $candidates->image= $filename;
+          }
+        
+          if($request->hasfile('academicReport')){
+            $file = $request->file('academicReport');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('uploads/academicReports/',$filename);
+            $candidates->academicReport= $filename;
+          }
+          if($request->hasfile('manifesto')){
+            $file = $request->file('manifesto');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('uploads/manifestos/',$filename);
+            $candidates->manifesto= $filename;
           }
 
         $res = $candidates->save();

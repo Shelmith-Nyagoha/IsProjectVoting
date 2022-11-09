@@ -96,7 +96,9 @@ class CustomAuthController extends Controller
                 $item= User::where('id','=', Session::get('loginId')) ->first();
             }
             return view (' voterDashboard', compact('item'));
+            
         }
+      
 
 
         public function profile()
@@ -106,6 +108,7 @@ class CustomAuthController extends Controller
                 $item= User::where('id','=', Session::get('loginId')) ->first();
             }
             return view ('voterDashboard', compact('item'));
+
         }
         public function prof()
         {

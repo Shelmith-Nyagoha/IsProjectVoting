@@ -123,17 +123,133 @@
 
                 <!-- ================= New Customers ================ -->
                 <div class="details" style="width:1300px;">
-                <div class="recentOrders" style="width:700px;">
+                    <div class="recentOrders" style="width:700px;">
+                <div id="row">
+                    <?php
+                      if(ISSET($_POST['submit']))
+                        {
+                            if(!ISSET($_POST['pres_id']))
+                            {
+                                $_SESSION['pres_id'] = "";
+                            }
+                            else
+                            {
+                                $_SESSION['pres_id'] = $_POST['pres_id'];
+                            }
+                            if(!ISSET($_POST['vp_id']))
+                            {
+                                $_SESSION['vp_id'] = "";
+                            }
+                            else
+                            {
+                                $_SESSION['vp_id'] = $_POST['vp_id'];
+                            }
+                            if(!ISSET($_POST['ua_id']))
+                            {
+                                $_SESSION['ua_id'] = "";
+                            }
+                            else
+                            {
+                                $_SESSION['ua_id'] = $_POST['ua_id'];
+                            }
+                            if(!ISSET($_POST['ss_id']))
+                            {
+                                $_SESSION['ss_id'] = "";
+                            }
+                            else
+                            {
+                                $_SESSION['ss_id'] = $_POST['ss_id'];
+                            }
+                        }
+                    ?>
+                </div>
+                <div class="col-lg-8" style = "margin-left:25%; margin-right:25%;" >
+		  <div class = "alert alert-info">
+			<div class="panel-heading"><center>PRESIDENTIAL CANDIDATE</center></div>
+			<br />
+			<?php
+				if(!$_SESSION['pres_id'])
+					{
+						
+					}
+				else
+					{
+						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `id` = '$_SESSION[pres_id]'")->fetch_array();
+						
+						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
+					}
+			?>
+			</div>
+			<div class = "alert alert-success" >
+			<div class="panel-heading"><center>VICE PRESIDENT</center></div>
+			<br />
+			<?php
+				if(!$_SESSION['vp_id'])
+					{
+						
+					}
+				else
+					{
+						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `id` = '$_SESSION[vp_id]'")->fetch_array();
+						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
+					}
+			?>
+			</div>
+			<div class = "alert alert-info">
+			<div class="panel-heading"><center>UNION ADVISOR</center></div>
+			<br/>
+			<?php
+				if(!$_SESSION['ua_id'])
+					{
+						
+					}
+				else
+					{
+						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `candidate_id` = '$_SESSION[ua_id]'")->fetch_array();
+						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
+					}
+			?>
+				
+			</div>
+			<div class = "alert alert-success" >
+			<div class="panel-heading"><center>SPORTS SECRETARY</center></div>
+			<br />
+			<?php
+				if(!$_SESSION['ss_id'])
+					{
+						
+					}
+				else
+					{
+						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `id` = '$_SESSION[ss_id]'")->fetch_array();
+						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
+					}
+			?>
+            
 
-                <?php
-                    $connection = mysqli_connect("localhost", "root", "", "onealis");
-                    $sql = "SELECT * FROM election WHERE electionId='1'";
-                    $result = mysqli_query($connection, $sql);
-                    $row = mysqli_fetch_object($result);
-                ?>
-                      <h1 style="text-align:center; font-family:cursive; font-size:50px;" >ELECTION COUNTDOWN </h1>
+            <div class="modal-body">
+										<p><center>Are you sure you want to submit your Votes? </center></p>
+                                    </div>
+									
+									<div class="modal-footer"><center>
+								<a href = "submit_vote.php"><button type = "submit" class="btn btn-success"><i class="icon-check"></i>&nbsp;Yes</button></a>
+								<a href = "vote.php"><button class="btn btn-danger" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Back</button></a>
+									</center></div>
 
-                    <div style="margin-top:-10%;" data-date="<?php echo $row->setDate; ?>" id="count-down"></div>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+            
 
                   
                    
@@ -145,12 +261,6 @@
         </div>
 
     <!-- =========== Scripts =========  -->
-    <script>
-                            $(function () {
-                                $("#count-down").TimeCircles();
-                            });
-                        </script>
-                                    
     <script src="../js/main.js"></script>
     
 

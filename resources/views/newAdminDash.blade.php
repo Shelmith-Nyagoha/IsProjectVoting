@@ -55,7 +55,7 @@
 
             
                 <li>
-                    <a href="#">
+                    <a href="setElection">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -105,8 +105,15 @@
             <!-- ======================= Cards ================== -->
             <div class="cardBox">
                 <div class="card">
+
+                <?php
+                    $connection = mysqli_connect("localhost", "root", "", "onealis");
+                    $query = "SELECT * FROM users";
+                    $result = mysqli_query($connection, $query);
+                    $rowcount = mysqli_num_rows( $result );   
+                ?>
                     <div>
-                        <div class="numbers">15</div>
+                        <div class="numbers"> <?php echo $rowcount ?> </div>
                         <div class="cardName">Voters</div>
                     </div>
 
@@ -116,8 +123,14 @@
                 </div>
 
                 <div class="card">
+                <?php
+                    $connection = mysqli_connect("localhost", "root", "", "onealis");
+                    $query = "SELECT * FROM positions";
+                    $result = mysqli_query($connection, $query);
+                    $rowcount = mysqli_num_rows( $result );   
+                ?>
                     <div>
-                        <div class="numbers">5</div>
+                        <div class="numbers"><?php echo $rowcount ?> </div>
                         <div class="cardName">Positions</div>
                     </div>
 
@@ -127,8 +140,14 @@
                 </div>
 
                 <div class="card">
+                <?php
+                    $connection = mysqli_connect("localhost", "root", "", "onealis");
+                    $query = "SELECT * FROM candidates";
+                    $result = mysqli_query($connection, $query);
+                    $rowcount = mysqli_num_rows( $result );   
+                ?>
                     <div>
-                        <div class="numbers">6</div>
+                        <div class="numbers"><?php echo $rowcount ?></div>
                         <div class="cardName">Candidates</div>
                     </div>
 

@@ -74,7 +74,7 @@
                 </li>
 
                 <li>
-                    <a href="logoutAdmin">
+                    <a href="adminLogin">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -150,7 +150,7 @@
     
 @foreach ($data as $candidates)
     <tr>
-     <td>{{$candidates->id}}</td>
+     <td>{{$candidates->candidateId}}</td>
      <td>{{$candidates->studentNumber}}</td>
      <td>
       <img src="{{asset('uploads/candidates/'.$candidates->image)}}"  width="100px" height="100px"alt="">

@@ -131,10 +131,9 @@
                     $result = mysqli_query($connection, $sql);
                     $row = mysqli_fetch_object($result);
                 ?>
-                      <h1 style="text-align:center; font-family:cursive; font-size:50px;" >ELECTION COUNTDOWN </h1>
+                      <h2 style="text-align:center; font-family:cursive; font-size:50px;" >MANIFESTO'S </h2>
 
-                    <div style="margin-top:-10%;" data-date="<?php echo $row->setDate; ?>" id="count-down"></div>
-
+                  
                   
                    
 
@@ -145,16 +144,6 @@
         </div>
 
     <!-- =========== Scripts =========  -->
-    <script>
-                            $(function () {
-                                $("#count-down").TimeCircles();
-                            });
-                        </script>
-                                    
-    <script src="../js/main.js"></script>
-    
-
-    <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
       <!-- ===== Link Swiper's CSS ===== -->
       <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
@@ -25,7 +26,7 @@
 
 <body>
      <!-- =============== Navigation ================ -->
-     <div class="container"  style="margin-left:-1%; margin-top:-44%; width;1180px;">
+     <div class="container"  style="margin-left:-1%; margin-top:-48.5%; width;1180px;">
         <div class="navigation">
             <ul>
                 <li>
@@ -76,7 +77,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="vote">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
@@ -130,68 +131,70 @@
 
             <!-- ================ Order Details List ================= -->
             <div class="details">
+
                 <div class="recentOrders"  style="width:1090px;">
                     <div class="cardHeader">
-                    <h1 style="margin-left:30%;margin-top:5%;" > <span class="lab la-accusoft"> Listed Candidates <i  class="far fa-grin-beam-sweat" class="far fa-grin-beam-sweat"> </i> <i  class="far fa-grin-beam-sweat" class="far fa-grin-beam-sweat"> </i> </h1 >
-                       
+                    <h1 style="margin-left:30%;margin-top:5%;" > <span class="lab la-accusoft"> Listed Candidates  <i  class="far fa-grin-beam-sweat" class="far fa-grin-beam-sweat"> </i> </h1 >  
                     </div>
+                    
+                    @foreach ($data as $candidates)
 
                     <section>
-    
-    <div class="swiper mySwiper container">
-      <div class="swiper-wrapper content">
+        
+                        <div class="swiper mySwiper container">
+                        <div class="swiper-wrapper content">
 
-      @foreach ($data as $candidates)
+                       
 
-        <div class="swiper-slide card">
-          <div class="card-content">
-            <div class="image">
-              <img src="{{asset('uploads/candidates/'.$candidates->image)}}" alt="">
+                            <div class="swiper-slide card" style="width:500px;  margin-left:20%">
+                                <div class="card-content">
+                                    <div class="image">
+                                    <img src="{{asset('uploads/candidates/'.$candidates->image)}}" alt="">
+                                    </div>
+
+                                    <div class="media-icons">
+                                    
+                                    </div>
+
+                                    <div class="name-profession">
+                                    <span class="name">{{$candidates->firstName}}</span>
+                                    <span class="profession">{{$candidates->positionName}}</span>
+                                    </div>
+
+                                    <div class="button">
+                                    <button class="aboutMe">
+                                    <a href="viewManifesto" class="aboutMe" style="text-decoration:none; color:white;">Manifesto</a>
+                                    </button>
+                                    
+                                    <button class="hireMe">
+                                    <a href="#" class="hireMe" style="text-decoration:none; color:white;">Connect</a>
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        
+                    </section>
+                    @endforeach
+
+                     <div class="swiper-button-next" ></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
             </div>
-
-            <div class="media-icons">
-              
-            </div>
-
-            <div class="name-profession">
-              <span class="name">{{$candidates->firstName}}</span>
-              <span class="profession">{{$candidates->positionName}}</span>
-            </div>
-
-            <div class="button">
-              <button class="aboutMe">About Me</button>
-              
-              <button class="hireMe">
-              <a href="#" class="hireMe" style="text-decoration:none; color:white;">Connect</a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        @endforeach
-
-       
-      
-
-      </div>
-    </div>
-
-    <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
-  </section>
-
 
                     
 
 
     <!-- =========== Scripts =========  -->
     <script src="../js/main.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
 
     <!-- ====== ionicons ======= -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -200,7 +203,7 @@
   <script>
     var swiper = new Swiper(".mySwiper", {
       slidesPerView: 2,
-      spaceBetween: 30,
+      spaceBetween: 25,
       slidesPerGroup: 2,
       loop: true,
       loopFillGroupWithBlank: true,
@@ -208,10 +211,23 @@
         el: ".swiper-pagination",
         clickable: true,
       },
+
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
       },
+      
+      breakpoints:{
+        0: {
+            slidesPerView: 2,
+        },
+        520: {
+            slidesPerView: 2,
+        },
+        950: {
+            slidesPerView: 2,
+        },
+    },
     });
   </script>
 

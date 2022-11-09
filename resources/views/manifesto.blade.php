@@ -201,7 +201,7 @@ button:focus{
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="vote">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>

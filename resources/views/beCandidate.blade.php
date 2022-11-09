@@ -15,6 +15,11 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   
 </head>
+ <style>
+  td{
+    text-align:center;
+  }
+ </style>
 
 <body>
     <!-- =============== Navigation ================ -->
@@ -59,14 +64,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                        <span class="title">Help</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="campaign">
@@ -78,7 +75,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="vote">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
@@ -125,7 +122,7 @@
                    
                 <div class="container">
   <h2> 
-    Are you interested in vying for a position?  <h2 class="far fa-grin-beam-sweat" > </h2>
+    Are you interested in vying for a position?  </h2>
     
   </h2>
 
@@ -157,6 +154,17 @@
             <input type="text" class="form-control block" placeholder="First Name" id="firstName" name="firstName" required>
           </div>
           <br>
+          <p>Upload your academic progress report here:</p>
+          <div class="input-group mb-6">
+						<input  type="file" name="academicReport" id="academicReport" class="form-control input_pass" required>
+					</div>	
+          <br>
+          <p>Upload your manifesto:</p>
+          <div class="input-group mb-6">
+						<input type="file" name="manifesto" id="manifesto" class="form-control input_pass" required>
+					</div>	
+          <br>
+          <p>Upload your profile picture:</p>
           <div class="input-group mb-6">
 						<input placeholder="Upload your profile picture" type="file" name="image" id="image" class="form-control input_pass" required>
 					</div>	
@@ -252,30 +260,41 @@
 </div>
 <!-- End Edit Modal -->
 
+<?php
+                    $connection = mysqli_connect("localhost", "root", "", "onealis");
+                    $query = "SELECT * FROM positions";
+                    $res = mysqli_query($connection, $query);
+                    
+                ?>
+                    
+                    <form>
+                      <h3 style="margin-top:-25%;">Available positions:</h3>
+                        <table class="table"  style="width:600px; margin-top:4%; margin-left:0%;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Position Id</th>
+                                    <th scope="col">Position Name</th>
+                                    
+                                </tr>
+                            </thead>
+                                <tbody> 
+                                    <?php 
+                                        while($row = mysqli_fetch_object($res))
+                                        {
+                                    ?>
+                                            <tr>
+                                                <td><?php  echo $row->positionId ?></td>
+                                                <td><?php   echo $row->positionName ?> </td>
+                                                
+                                            </tr>
+                                    <?php 
+                                        }
+                                    ?>      
+                                </tbody>
+                        </table>
+                    </form>
 
 
-  <form>
-  <table class="table"  style="width:900px; margin-top:-15%; margin-left:0%;">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Position Name</th>
-      <th scope="col">Position Description</th> 
-    </tr>
-  </thead>
-  <tbody>
-    
-  @foreach ($data as $positions)
-    <tr>
-      <td>{{$positions->PositionId}}</td>
-      <td>{{$positions->positionName}}</td>
-      <td>{{$positions->positionDescription}}</td>
-    </tr>
-  @endforeach 
-  </tbody>
-</table>
-
-</form>
 
 
 </div>

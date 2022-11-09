@@ -8,6 +8,7 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\CustomAuthAdminController;
+use App\Http\Controllers\SessionController;
 use App\Models\Admin;
 use App\Mail\newCandMail;
 use App\Models\User;
@@ -37,6 +38,7 @@ Route::post('/login-user',[CustomAuthController::class,'loginUser'])->name('logi
 Route::get('/dashboard',[CustomAuthController::class,'dashboard'])->middleware('isLoggedIn');
 Route::get('/voterDashboard',[CustomAuthController::class,'voterDashboard'])->middleware('isLoggedIn');
 Route::get('/voterDashboard',[CustomAuthController::class,'profile']);
+Route::get('/vote',[CustomAuthController::class,'profile']);
 
 Route::get('/logout',[CustomAuthController::class,'logout']);
 
@@ -87,6 +89,17 @@ Route::post('/updateElection/{id}',[ElectionController::class,'updateElection'])
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/vote',[PositionController::class,'vote']);
+Route::get('/viewManifesto',[PositionController::class,'viewManifesto']);
+Route::get('/vote',[PositionController::class,'indexFive']);
+
+Route::get('/voteResult',[CandidateController::class,'viewResult']);
+
+
+Route::get('get-session',[SessionController::class,'getSession']);
+Route::get('store-session',[SessionController::class,'storeSession']);
+Route::get('delete-session',[SessionController::class,'deleteSession']);
+
 
 
 // Route::get('/email', function () {

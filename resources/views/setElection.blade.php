@@ -74,7 +74,7 @@
                 </li>
 
                 <li>
-                    <a href="logoutAdmin">
+                    <a href="adminLogin">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -211,7 +211,7 @@
       
       <form  action="/updateElection/{{$election->id}}"  method="POST" style="padding-top:0px;">
       @csrf
-      {{method_field('PUT')}}
+      
       <div class="modal-body"> 
 
     
