@@ -13,19 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('candidates', function (Blueprint $table) {
+        Schema::create('tevos', function (Blueprint $table) {
             $table->id();
-            $table->string('studentNumber')->unique();
-            $table->string('firstName');
-            $table->string('image');
-            $table->string('positionName');
-            $table->string('academicReport');
-            $table->string('manifesto');
-            $table->string('email')->unique();
+            $table->string('voterId');
+            $table->string('presidentId');
+            $table->string('viceId');
+            $table->string('sportId');
+            $table->string('financeId');
             $table->timestamps();
         });
     }
-   
+
     /**
      * Reverse the migrations.
      *
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidates');
+        Schema::dropIfExists('tevos');
     }
 };

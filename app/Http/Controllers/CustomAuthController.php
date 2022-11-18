@@ -68,7 +68,7 @@ class CustomAuthController extends Controller
             if($user)
                 {if (Hash::check($request->password, $user->password))
             {
-                $request->session()->put('loginId', $user->id);
+                $request->session()->put('loginId', $user->voterId);
                 return redirect('voterDashboard');
             }
             else {
@@ -80,43 +80,44 @@ class CustomAuthController extends Controller
                 }
         }
 
-        public function dashboard()
-        {
-            $data = array();
-            if(Session::has('loginId')){
-                $data= User::where('id','=', Session::get('loginId')) ->first();
-            }
-            return view ('dashboard', compact('data'));
-        }
+        
         
         public function voterDashboard()
         {
-            $item = array();
+           
+             $item = array();
             if(Session::has('loginId')){
-                $item= User::where('id','=', Session::get('loginId')) ->first();
+            $item= User::where('voterId','=', Session::get('loginId')) ->first();
             }
-            return view (' voterDashboard', compact('item'));
+            return view ('submit_vote', compact('item'));
             
         }
       
 
 
         public function profile()
-        {
+        { 
             $item = array();
             if(Session::has('loginId')){
-                $item= User::where('id','=', Session::get('loginId')) ->first();
-            }
-            return view ('voterDashboard', compact('item'));
-
+            $item= User::where('voterId','=', Session::get('loginId')) ->first();
+             }
+            return view (' voterDashboard', compact('item'));            
         }
+
+            // $item = array();
+            // if(Session::has('loginId')){
+            //     $item= User::where('voterId','=', Session::get('loginId')) ->first();
+            // }
+            // return view ('voterDashboard', compact('item'));
+
+      
         public function prof()
         {
             $dat = array();
             if(Session::has('loginId')){
-                $dat= User::where('id','=', Session::get('loginId')) ->first();
+                $dat= User::where('voterId','=', Session::get('loginId')) ->first();
             }
-            return view ('manifesto', compact('dat'));
+            return view ('vote', compact('dat'));
         }
 
         public function logout()

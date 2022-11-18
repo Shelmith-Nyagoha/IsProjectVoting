@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Position;
 use App\Models\Candidate;
+use App\Models\User;
 
 use DB;
 use Hash;
@@ -118,5 +119,13 @@ class PositionController extends Controller
         {
             $data=Candidate::all();
             return view("vote",['data'=>$data]);
+        }
+        public function indexMe()
+        {
+            $row = array();
+            if(Session::has('loginId')){
+                $row= User::where('voterId','=', Session::get('loginId')) ->first();
+            }
+            return view ('beCandidate', compact('row'));
         }
         }

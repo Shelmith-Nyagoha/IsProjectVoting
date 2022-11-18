@@ -1,3 +1,6 @@
+<?php
+     session_start();
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,6 +105,12 @@
                     </label>
                 </div>
 
+                <div class="name" style="margin-right:-20%;">
+                   
+                    <p>{{$item->studentnumber}}, {{ $item->firstname }}</p>
+                    
+                </div>
+
                 <div class="notification" style="margin-right:-19%;">
                      <a href="#">
                         <span class="icon">
@@ -113,7 +122,7 @@
             
                 <div class="user" style="margin-right:-20%;">
                    
-                    <img src="" alt="no image">
+                    <img src="{{asset('uploads/users/'.$item->image)}}" alt="no image">
                     
                 </div>
             </div>
@@ -131,6 +140,7 @@
                     $result = mysqli_query($connection, $sql);
                     $row = mysqli_fetch_object($result);
                 ?>
+                
                       <h1 style="text-align:center; font-family:cursive; font-size:50px;" >ELECTION COUNTDOWN </h1>
 
                     <div style="margin-top:-10%;" data-date="<?php echo $row->setDate; ?>" id="count-down"></div>

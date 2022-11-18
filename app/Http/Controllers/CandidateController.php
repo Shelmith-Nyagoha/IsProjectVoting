@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Candidate;
+use App\Models\User;
 use App\Mail\newCandMail;
 use DB;
 use Hash;
@@ -14,7 +15,12 @@ class CandidateController extends Controller
 {
     public function viewResult()
     {
-        return view("voteResult");
+        $item = array();
+            if(Session::has('loginId')){
+            $item= User::where('voterId','=', Session::get('loginId')) ->first();
+            }
+            return view ('voteResult', compact('item'));
+    
     }
 
     public function manageCandidate()
@@ -129,5 +135,13 @@ class CandidateController extends Controller
         $data=Candidate::all();
         return view("beCandidate",['data'=>$data]);
     }
+    public function dashboard()
+        {
+            $data = array();
+            if(Session::has('loginId')){
+                $data= User::where('voterId','=', Session::get('loginId')) ->first();
+            }
+            return view ('allCandView', compact('data'));
+        }
    
 }

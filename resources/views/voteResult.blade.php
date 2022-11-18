@@ -1,6 +1,8 @@
+<?php include("session.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +16,7 @@
 <script src="../js/TimeCircles.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/TimeCircles.css">
 
+
 </head>
 
 <body>
@@ -22,7 +25,7 @@
         <div class="navigation" >
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="voterDashboard">
                         <span class="icon">
                            
                         </span>
@@ -126,6 +129,7 @@
                     <div class="recentOrders" style="width:700px;">
                 <div id="row">
                     <?php
+                    
                       if(ISSET($_POST['submit']))
                         {
                             if(!ISSET($_POST['pres_id']))
@@ -135,6 +139,8 @@
                             else
                             {
                                 $_SESSION['pres_id'] = $_POST['pres_id'];
+                                
+                                echo $_SESSION['voterId'];
                             }
                             if(!ISSET($_POST['vp_id']))
                             {
@@ -143,6 +149,7 @@
                             else
                             {
                                 $_SESSION['vp_id'] = $_POST['vp_id'];
+                                
                             }
                             if(!ISSET($_POST['ua_id']))
                             {
@@ -160,12 +167,16 @@
                             {
                                 $_SESSION['ss_id'] = $_POST['ss_id'];
                             }
+                            
                         }
                     ?>
                 </div>
+            
                 <div class="col-lg-8" style = "margin-left:25%; margin-right:25%;" >
-		  <div class = "alert alert-info">
-			<div class="panel-heading"><center>PRESIDENTIAL CANDIDATE</center></div>
+		  <div class = "alert alert-info" style = "text-align:center;">
+			<div class="panel-heading" style = "font-size:20px;"><center>PRESIDENT</center></div>
+            <p> </p>
+            
 			<br />
 			<?php
 				if(!$_SESSION['pres_id'])
@@ -174,14 +185,18 @@
 					}
 				else
 					{
-						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `id` = '$_SESSION[pres_id]'")->fetch_array();
+                       
+                        $_SESSION['voterId'];
+                        $conn = mysqli_connect("localhost", "root", "", "onealis");   
+                
+						$fetch = $conn->query("SELECT * FROM `candidates` WHERE `candidateId` = '$_SESSION[pres_id]'")->fetch_array();
 						
-						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
+						echo $fetch['firstName']." "."<img src = '../uploads/candidates/".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
 					}
 			?>
 			</div>
-			<div class = "alert alert-success" >
-			<div class="panel-heading"><center>VICE PRESIDENT</center></div>
+			<div class = "alert alert-success"  style = "text-align:center;">
+			<div class="panel-heading" style = "font-size:20px;"><center>VICE PRESIDENT </center></div>
 			<br />
 			<?php
 				if(!$_SESSION['vp_id'])
@@ -190,13 +205,18 @@
 					}
 				else
 					{
-						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `id` = '$_SESSION[vp_id]'")->fetch_array();
-						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
-					}
+                        
+                        $_SESSION['voterId']=$item->voterId;
+                        $conn = mysqli_connect("localhost", "root", "", "onealis");   
+                
+						$fetch = $conn->query("SELECT * FROM `candidates` WHERE `candidateId` = '$_SESSION[vp_id]'")->fetch_array();
+						
+						echo $fetch['firstName']." "."<img src = '../uploads/candidates/".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
+                    }
 			?>
 			</div>
-			<div class = "alert alert-info">
-			<div class="panel-heading"><center>UNION ADVISOR</center></div>
+			<div class = "alert alert-info" style = "text-align:center;" >
+			<div class="panel-heading" style = "font-size:20px;"><center>FEMALE SPORTS REPRESENTATIVE </center></div>
 			<br/>
 			<?php
 				if(!$_SESSION['ua_id'])
@@ -205,14 +225,20 @@
 					}
 				else
 					{
-						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `candidate_id` = '$_SESSION[ua_id]'")->fetch_array();
-						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
-					}
+                        
+                        $conn = mysqli_connect("localhost", "root", "", "onealis");   
+                        $_SESSION['voterId']=$item->voterId;
+						$fetch = $conn->query("SELECT * FROM `candidates` WHERE `candidateId` = '$_SESSION[ua_id]'")->fetch_array();
+						
+						echo $fetch['firstName']." "."<img src = '../uploads/candidates/".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
+                    }
+                    
+
 			?>
 				
 			</div>
-			<div class = "alert alert-success" >
-			<div class="panel-heading"><center>SPORTS SECRETARY</center></div>
+			<div class = "alert alert-success"  style = "text-align:center;">
+			<div class="panel-heading" style = "font-size:20px;"><center>FINANCE REPRESENTATIVE </center></div>
 			<br />
 			<?php
 				if(!$_SESSION['ss_id'])
@@ -221,19 +247,25 @@
 					}
 				else
 					{
-						$fetch = $conn->query("SELECT * FROM `candidate` WHERE `id` = '$_SESSION[ss_id]'")->fetch_array();
-						echo $fetch['firstname']." "."<img src = '../uploads/candidates".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />"; 
-					}
+                        $conn = mysqli_connect("localhost", "root", "", "onealis");   
+                        $_SESSION['voterId']=$item->voterId;
+						$fetch = $conn->query("SELECT * FROM `candidates` WHERE `candidateId` = '$_SESSION[ss_id]'")->fetch_array();
+                        
+                        echo $fetch['candidateId']; 
+                    
+						echo $fetch['firstName']." "."<img src = '../uploads/candidates/".$fetch['image']."' style = 'height:80px; width:80px; border-radius:500px;' />";
+                      
+                    }
 			?>
             
 
             <div class="modal-body">
-										<p><center>Are you sure you want to submit your Votes? </center></p>
+										<p style = "font-size: 20px;"><center>Are you sure you want to submit your votes? </center></p>
                                     </div>
 									
 									<div class="modal-footer"><center>
 								<a href = "submit_vote.php"><button type = "submit" class="btn btn-success"><i class="icon-check"></i>&nbsp;Yes</button></a>
-								<a href = "vote.php"><button class="btn btn-danger" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Back</button></a>
+								<a href = "vote"><button class="btn btn-danger" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Back</button></a>
 									</center></div>
 
 

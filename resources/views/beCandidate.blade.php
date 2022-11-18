@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Voting System</title>
-    <!-- ======= Styles ====== -->
+    <!-- ======= Styles ====== -->\
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   
 </head>
  <style>
@@ -23,8 +22,8 @@
 
 <body>
     <!-- =============== Navigation ================ -->
-    <div class="container" style="margin-left:-2%;">
-        <div class="navigation"style="background-color:#00B8B8;" >
+    <div class="container" style="margin-left:-2%; margin-top:-2%; ">
+        <div class="navigation" style="" >
             <ul>
                 <li>
                     <a href="#">
@@ -117,8 +116,8 @@
         
 
                 <!-- ================= New Customers ================ -->
-                <div class="details" style="width:1300px;">
-                <div class="recentOrders" style="width:700px;">
+                <div class="details" style="width:1100px;">
+                <div class="recentOrders" style="width:500px;">
                    
                 <div class="container">
   <h2> 
@@ -142,16 +141,17 @@
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+     
 
       <form action="{{route('add-vie')}}"  method="POST" style="padding-top:0px;"  enctype="multipart/form-data">
       @csrf
       <div class="modal-body">         
           <div class="form-group mb-6">
-            <input type="number" class="form-control " placeholder="Student Number" id="studentNumber" name="studentNumber" required>
+            <input value="{{$row->studentnumber}}" type="number" class="form-control " placeholder="Student Number" id="studentNumber" name="studentNumber" required>
           </div> 
           <br>
           <div class="form-group mb-6">
-            <input type="text" class="form-control block" placeholder="First Name" id="firstName" name="firstName" required>
+            <input  value="{{$row->firstname}} {{$row->lastname}}" type="text" class="form-control block" placeholder="First Name" id="firstName" name="firstName" required>
           </div>
           <br>
           <p>Upload your academic progress report here:</p>
@@ -278,6 +278,12 @@
                                 </tr>
                             </thead>
                                 <tbody> 
+                                <?php
+                                    $connection = mysqli_connect("localhost", "root", "", "onealis");
+                                    $sql = "SELECT * FROM positions";
+                                    $result = mysqli_query($connection, $sql);
+                                    $row = mysqli_fetch_object($result);
+                                ?>
                                     <?php 
                                         while($row = mysqli_fetch_object($res))
                                         {

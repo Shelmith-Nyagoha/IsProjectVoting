@@ -127,11 +127,23 @@
 
                 <?php
                     $connection = mysqli_connect("localhost", "root", "", "onealis");
-                    $sql = "SELECT * FROM election WHERE electionId='1'";
-                    $result = mysqli_query($connection, $sql);
-                    $row = mysqli_fetch_object($result);
+                    $sql = "SELECT * FROM candidates";
+                    $res = mysqli_query($connection, $sql);
+                    $row = mysqli_fetch_object($res);
                 ?>
                       <h2 style="text-align:center; font-family:cursive; font-size:50px;" >MANIFESTO'S </h2>
+
+                      
+                      <?php 
+                         while($row = mysqli_fetch_object($res))
+                                        {
+                        ?>
+                      <p>{{$row->firstName}} </p>    
+                      <embed  src="{{asset('uploads/manifestos/'.$row->manifesto)}}" /> 
+                      
+                      <?php 
+                       }
+                     ?>
 
                   
                   

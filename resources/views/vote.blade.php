@@ -1,4 +1,4 @@
-
+<?php include("session.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +40,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="voterDashboard">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -108,6 +108,11 @@
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
+                <div class="name" style="margin-right:-20%;">
+                   
+                   <p> </p>
+                   
+               </div>
 
                 <div class="notification" style="margin-right:-19%;">
                      <a href="#">
@@ -120,7 +125,7 @@
             
                 <div class="user" style="margin-right:-20%;">
                    
-                    <img src="" alt="no image">
+                    <img src=""alt="no image">
                     
                 </div>
             </div>
@@ -140,10 +145,12 @@
                     
                 ?>
                     <h1 style="text-align:center; font-family:cursive; font-size:50px;" >CAST YOUR VOTE </h1>
-        <form method = "POST" action = "vote_result.php">
-
+                    <center>
+                    <form method = "POST" action = "voteResult">
+                        @csrf
                     <h3 style="text-align:left;margin-top:1%; font-family:; font-size:20px;" >PRESIDENTIAL CANDIDATES:</h3>
                    
+
                         <table class="table"  style="width:600px; margin-top:1%; margin-left:0%;">
                             <thead>
                                 <tr>
@@ -162,7 +169,7 @@
                                                 <td><?php  echo $row->firstName ?></td>
                                                 <td> <img align ="left"  src="{{asset('uploads/candidates/'.$row->image)}}"  width="100px" height="100px"alt=""> </td> 
                                                 <td><?php  echo $row->votes ?></td>
-                                                <td> <input type = "checkbox"  value = "<?php echo $row->candidateId ?>" name = "pres_id" class = "pres"> &nbsp &nbspGive Vote </td>
+                                                <td> <input type = "checkbox"  value = "<?php echo $row->candidateId ?>" id ="presidentId" name = "pres_id" class = "pres"> &nbsp &nbspGive Vote </td>
                                                 
                                             </tr>
                                     <?php 
@@ -180,6 +187,7 @@
                     $res = mysqli_query($connection, $query);
                     
                 ?>
+                
                     <h3 style="text-align:left;margin-top:1%; font-family:; font-size:20px;" >VICE PRESIDENT CANDIDATES:</h3>
                     
                         <table class="table"  style="width:600px; margin-top:1%; margin-left:0%;">
@@ -200,7 +208,7 @@
                                                 <td><?php  echo $row->firstName ?></td>
                                                 <td> <img align ="left"  src="{{asset('uploads/candidates/'.$row->image)}}"  width="100px" height="100px"alt=""> </td> 
                                                 <td><?php  echo $row->votes ?></td>
-                                                <td> <input type = "checkbox"  value = "<?php echo $row->candidateId ?>" name = "vp_id" class = "vpres"> &nbsp &nbspGive Vote </td>
+                                                <td> <input type = "checkbox"  id ="viceId" value = "<?php echo $row->candidateId ?>" name = "vp_id" class = "vpres"> &nbsp &nbspGive Vote </td>
                                             </tr>
                                     <?php 
                                         }
@@ -236,7 +244,7 @@
                                                 <td><?php  echo $row->firstName ?></td>
                                                 <td> <img align ="left"  src="{{asset('uploads/candidates/'.$row->image)}}"  width="100px" height="100px"alt=""> </td> 
                                                 <td><?php  echo $row->votes ?></td>
-                                                <td> <input type = "checkbox"  value = "<?php echo $row->candidateId ?>" name = "ua_id" class = "ua"> &nbsp &nbspGive Vote </td>
+                                                <td> <input type = "checkbox"  value = "<?php echo $row->candidateId ?>"  id ="sportId" name = "ua_id" class = "ua"> &nbsp &nbspGive Vote </td>
                                             </tr>
                                     <?php 
                                         }
@@ -272,8 +280,7 @@
                                                 <td><?php  echo $row->firstName ?></td>
                                                 <td> <img align ="left"  src="{{asset('uploads/candidates/'.$row->image)}}"  width="80px" height="80px"alt=""> </td> 
                                                 <td><?php  echo $row->votes ?></td>
-                                                <td> <input type = "checkbox"  value = "<?php echo $row->candidateId ?>" name = "ss_id" class = "ss"> &nbsp &nbspGive Vote </td>
-
+                                                <td> <input type = "checkbox"  value = "<?php echo $row->candidateId ?>"  id ="financeId" name = "ss_id" class = "ss"> &nbsp &nbspGive Vote </td>
                                             </tr>
                                     <?php 
                                         }
@@ -281,9 +288,12 @@
                                 </tbody>
                         </table>
                    
-                        <center><button class = "btn btn-success ballot" type = "submit" name = "submit">Submit Ballot</button></center>
+                        <center><button class = "btn btn-success ballot" type = "submit" name = "submit" style=" background-color:#008B8B">Submit Ballot</button></center>
                   
-        </form>
+                </form>
+
+
+            </center>
 
                          
                    

@@ -23,7 +23,15 @@ class CampaignController extends Controller
             $campaigns-> studentNumber = $request->input('studentNumber');
             $campaigns-> positionName = $request->input('positionName');
             $campaigns-> campaignChannel = $request->input('campaignChannel');
-            $campaigns-> manifesto= $request->input('manifesto');
+            
+
+            if($request->hasfile('image')){
+                $file = $request->file('image');
+                $extention = $file->getClientOriginalExtension();
+                $filename = time().'.'.$extention;
+                $file->move('uploads/candidates/',$filename);
+                $candidates->image= $filename;
+              }
 
             $res = $campaigns->save();
 

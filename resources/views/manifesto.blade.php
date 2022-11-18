@@ -165,7 +165,7 @@ button:focus{
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="voterDashboard">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>

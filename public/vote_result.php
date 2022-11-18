@@ -1,7 +1,9 @@
+<?php include("session.php");
+echo $session_id ;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +26,7 @@
         <div class="navigation" >
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="voterDashboard">
                         <span class="icon">
                            
                         </span>
@@ -128,6 +130,7 @@
                     <div class="recentOrders" style="width:700px;">
                 <div id="row">
                     <?php
+                    
                       if(ISSET($_POST['submit']))
                         {
                             if(!ISSET($_POST['pres_id']))
@@ -137,6 +140,8 @@
                             else
                             {
                                 $_SESSION['pres_id'] = $_POST['pres_id'];
+                                
+                                echo $_SESSION['voterId'];
                             }
                             if(!ISSET($_POST['vp_id']))
                             {
@@ -145,6 +150,7 @@
                             else
                             {
                                 $_SESSION['vp_id'] = $_POST['vp_id'];
+                                
                             }
                             if(!ISSET($_POST['ua_id']))
                             {
@@ -162,12 +168,21 @@
                             {
                                 $_SESSION['ss_id'] = $_POST['ss_id'];
                             }
+                            if(!ISSET($_POST['voterId']))
+                            {
+                                $_SESSION['voterId'] = "";
+                            }
+                            else
+                            {
+                                $_SESSION['voterId'] = $_POST['voterId'];
+                            }
                         }
                     ?>
                 </div>
                 <div class="col-lg-8" style = "margin-left:25%; margin-right:25%;" >
 		  <div class = "alert alert-info" style = "text-align:center;">
 			<div class="panel-heading" style = "font-size:20px;"><center>PRESIDENT</center></div>
+           
 			<br />
 			<?php
 				if(!$_SESSION['pres_id'])

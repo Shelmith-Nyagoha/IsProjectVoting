@@ -110,6 +110,11 @@
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
+                <div class="name" style="margin-right:-20%;">
+                   
+                    <p></p>
+                    
+                </div>
                 
                 <div class="notification" style="margin-right:-19%;">
                      <a href="#">

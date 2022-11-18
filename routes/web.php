@@ -9,6 +9,8 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\CustomAuthAdminController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\VoteController;
+use App\Http\Controllers\TevoController;
 use App\Models\Admin;
 use App\Mail\newCandMail;
 use App\Models\User;
@@ -38,7 +40,8 @@ Route::post('/login-user',[CustomAuthController::class,'loginUser'])->name('logi
 Route::get('/dashboard',[CustomAuthController::class,'dashboard'])->middleware('isLoggedIn');
 Route::get('/voterDashboard',[CustomAuthController::class,'voterDashboard'])->middleware('isLoggedIn');
 Route::get('/voterDashboard',[CustomAuthController::class,'profile']);
-Route::get('/vote',[CustomAuthController::class,'profile']);
+Route::get('/allCandView',[CandidateController::class,'dashboard']);
+Route::get('/vote',[CustomAuthController::class,'prof']);
 
 Route::get('/logout',[CustomAuthController::class,'logout']);
 
@@ -93,16 +96,24 @@ Route::get('/vote',[PositionController::class,'vote']);
 Route::get('/viewManifesto',[PositionController::class,'viewManifesto']);
 Route::get('/vote',[PositionController::class,'indexFive']);
 
-Route::get('/voteResult',[CandidateController::class,'viewResult']);
+Route::post('/voteResult',[CandidateController::class,'viewResult']);
 
 
 Route::get('get-session',[SessionController::class,'getSession']);
 Route::get('store-session',[SessionController::class,'storeSession']);
 Route::get('delete-session',[SessionController::class,'deleteSession']);
 
+Route::get('submitVote', [VoteController::class,'submit']);
+
+Route::get('vote', [VoteController::class,'canBe']);
+
+Route::get('/beCandidate',[PositionController::class,'indexMe']);
+
+Route::post('/add-vote', [TevoController::class,'addVote'])->name('add-vote');
 
 
-// Route::get('/email', function () {
-//     Mail::to('email@email.com')->send(new newCandMail());
-//     return new newCandMail();
-// });
+
+View::composer(['*'],function($view){
+    $user= Auth::user();
+    $view->with('user',$user);
+});
