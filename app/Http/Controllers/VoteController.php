@@ -33,6 +33,15 @@ class VoteController extends Controller
                 return view ('vote', compact('item'));
         
         }
+
+        public function reports()
+        {
+            return view("reports");
+        }
+        public function results()
+        {
+            return view("results");
+        }
     //     public function Bee(){
 	// 	$conn = mysqli_connect("localhost", "root", "", "onealis");
 

@@ -47,7 +47,7 @@
                     <a href="positions">
                         <span class="icon">
                             
-                            <ion-icon name="people-outline"></ion-icon>
+                            <ion-icon name="help-buoy-outline"></ion-icon>
                         </span>
                         <span class="title">Manage Positions</span>
                     </a>
@@ -64,11 +64,20 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="results">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
                         <span class="title">Results</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="reports">
+                        <span class="icon">
+                            <ion-icon name="document-text-outline"</ion-icon>
+                        </span>
+                        <span class="title">Reports</span>
                     </a>
                 </li>
 
@@ -156,8 +165,14 @@
                     </div>
                 </div>
                 <div class="card">
+                <?php
+                    $connection = mysqli_connect("localhost", "root", "", "onealis");
+                    $query = "SELECT * FROM users where status = 1";
+                    $result = mysqli_query($connection, $query);
+                    $rowcount = mysqli_num_rows( $result );   
+                ?>
                     <div>
-                        <div class="numbers">0</div>
+                        <div class="numbers"><?php echo $rowcount ?></div>
                         <div class="cardName">Voted</div>
                     </div>
 
@@ -180,13 +195,130 @@
 
             <!-- ================ Order Details List ================= -->
             <div class="details" style="">
-                <div class="recentOrders" style="width:; background-color:;">
+                <div class="recentOrders" >
                     <div class="cardHeader">
-                        <h2>Election's Result Tally</h2>
-                        
-                    </div>     
+                        <h2>Election Overview</h2> 
+                        <br>               
+                    </div>  
+                    <h3 style=" margin-top:-20%;">VOTED STUDENTS</h3>    
+                    <div class="panel-body">
+                            <div class="table-responsive">
+                                
+                                <table style="width:300px; margin-top:-35%;"class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                         
+                                            <th>Student ID</th>
+                                            <th>Names</th>
+                                                                                       
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+									
+                                      
+										<?php 
+										$conn = mysqli_connect("localhost", "root", "", "onealis"); 
+										$query = $conn->query("SELECT * FROM users where status = '1'");
+										while($row = $query->fetch_array()){
+											$voterId=$row ['voterId'];
+										?>
+										 <tr class="odd gradeX">
+											    <td><?php echo $row ['studentnumber'];?></td>
+                                                <td><?php echo $row ['firstname']." ". $row ['lastname'];?></td>
+                                                    
+                                        </tr>
+                                        
+                                       <?php
+											} 
+									   ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                            
+                        </div>
                 </div>  
             </div>
+
+            <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Recent Customers</h2>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
            
 

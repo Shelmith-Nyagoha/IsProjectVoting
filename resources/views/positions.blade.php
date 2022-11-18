@@ -15,19 +15,19 @@
     <!-- =============== Navigation ================ -->
     <div class="container" style="margin-left:-1%;">
         <div class="navigation">
-            <ul>
+        <ul>
                 <li>
                     <a href="#">
                         <span class="icon">
                             <ion-icon name=""></ion-icon>
                         </span>
                         <span class="title">
-                            <h4 style="margin-left:-34%;margin-top:5%">ADMIN'S DASHBOARD</h4></span>
+                            <h3 style="margin-left:-14%;">ADMIN'S DASHBOARD</h3></span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="newAdminDash">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -48,7 +48,7 @@
                     <a href="positions">
                         <span class="icon">
                             
-                            <ion-icon name="people-outline"></ion-icon>
+                            <ion-icon name="help-buoy-outline"></ion-icon>
                         </span>
                         <span class="title">Manage Positions</span>
                     </a>
@@ -65,11 +65,20 @@
                 </li>
 
                 <li>
-                    <a href="results">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
                         <span class="title">Results</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="reports">
+                        <span class="icon">
+                            <ion-icon name="document-text-outline"</ion-icon>
+                        </span>
+                        <span class="title">Reports</span>
                     </a>
                 </li>
 

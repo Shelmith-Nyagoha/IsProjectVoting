@@ -33,6 +33,7 @@ Route::get('/', function () {
 
 
 
+
 Route::get('/login', [CustomAuthController::class,'login'])->middleware('AlreadyLoggedIn');
 Route::get('/registration', [CustomAuthController::class,'registration'])->middleware('AlreadyLoggedIn');
 Route::post('/register-user', [CustomAuthController::class,'registerUser'])->name ('register-user');
@@ -106,10 +107,12 @@ Route::get('delete-session',[SessionController::class,'deleteSession']);
 Route::get('submitVote', [VoteController::class,'submit']);
 
 Route::get('vote', [VoteController::class,'canBe']);
+Route::get('/reports', [VoteController::class,'reports']);
+Route::get('/results', [VoteController::class,'results']);
 
 Route::get('/beCandidate',[PositionController::class,'indexMe']);
 
-Route::post('/add-vote', [TevoController::class,'addVote'])->name('add-vote');
+
 
 
 
