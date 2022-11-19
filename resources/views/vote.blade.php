@@ -146,7 +146,7 @@
                 ?>
                     <h1 style="text-align:center; font-family:cursive; font-size:50px;" >CAST YOUR VOTE </h1>
                     <center>
-                    <form method = "POST" action = "voteResult">
+                    <form method = "POST" action = "voteResult" class="form-disable">
                         @csrf
                     <h3 style="text-align:left;margin-top:1%; font-family:; font-size:20px;" >PRESIDENTIAL CANDIDATES:</h3>
                    
@@ -287,6 +287,7 @@
                                     ?>      
                                 </tbody>
                         </table>
+                      
                    
                         <center><button class = "btn btn-success ballot" type = "submit" name = "submit" style=" background-color:#008B8B">Submit Ballot</button></center>
                   
@@ -321,8 +322,9 @@
                                     
     <script src="../js/main.js"></script>
     
-
+   
     <!-- ====== ionicons ======= -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

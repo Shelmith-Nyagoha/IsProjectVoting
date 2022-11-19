@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="user" style="margin-right:-20%;">
-                    <img src="assets/imgs/customer01.jpg" alt="">
+                    <img src="" alt="">
                 </div>
             </div>
 
@@ -189,7 +189,7 @@
           </div>
           <br>
           <div class="form-group mb-6">
-            <input type="date" class="form-control block" placeholder="Set Date" id="setDate" name="setDate" required>
+            <input type="date" id="demo" class="form-control block" placeholder="Set Date" id="setDate" name="setDate" required>
           </div>
           <br>       
       </div>
@@ -234,7 +234,7 @@
           </div>
           <br>
           <div class="form-group mb-6">
-            <input value="{{$election->setDate}}" type="date" class="form-control block" placeholder="Set Date" id="setDate" name="setDate" required>
+            <input  id="demo" value="{{$election->setDate}}" type="date"  class="form-control block" placeholder="Set Date" id="setDate" name="setDate" required>
           </div>
           <br>       
       </div>
@@ -290,6 +290,24 @@
     </div>
 
     <!-- =========== Scripts =========  -->
+    <script>
+    var date = new Date();
+    var month = date.getMonth() +1;
+    var tdate = date.getDate();
+
+    if (month < 10) {
+        month = "0" + month
+    }
+    if (tdate < 10) {
+        tdate = "0" + tdate;
+    }
+
+    var year = date.getUTCFullYear() - 0;
+    var minDate = year + "-" + month + "-" + tdate;
+    document.getElementById("demo").setAttribute("min", minDate);
+    console.log(minDate);
+</script>
+
     <script src="../js/main.js"></script>
 
     <!-- ====== ionicons ======= -->
